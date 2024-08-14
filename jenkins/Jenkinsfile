@@ -1,6 +1,12 @@
 pipeline {
     agent any
+    parameters {
+        string defaultValue: 'master',description: 'Branch to Build', name: 'BRANCH', trim: true
+    }
     stages {
+        stage('Checkout') {
+            git branch: params.BRANCH, url: 'https://github.com/vivekgupta8983/simple-java-maven-app.git'
+        }
         stage('Build') {
             steps {
                 sh '/opt/maven/bin/mvn -B -DskipTests clean package'
