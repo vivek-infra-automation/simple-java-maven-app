@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: params.BRANCH, url: 'https://github.com/vivekgupta8983/simple-java-maven-app.git'
+                git credentialsId: 'git_ssh_key', branch: params.BRANCH, url: 'https://github.com/vivekgupta8983/simple-java-maven-app.git'
             }
         }
         stage('Build') {
